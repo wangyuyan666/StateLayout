@@ -1,12 +1,20 @@
 # AndroidStateLayout
 -
 A library for showing different state of views - Content,Empty,Loading,Error.
-![state-layout](http://7u2rld.com1.z0.glb.clouddn.com/state_layout.gif)
+![state-layout](https://github.com/objectlife/StateLayout/blob/master/screenshot/state_layout.gif)
 
 ##Usage
 
 ###1.IMPORT
 * Download and import the library module into your workspace.
+* OR
+* Add these lines to `build.gradle` of your project
+
+```
+dependencies {
+    compile 'com.objectlife.statelayout:statelayout:1.0.0'
+}
+```
 
 ###2.CODE
 ####2.1. If ***`has no child`*** in your statelayout , you can use it as follow
