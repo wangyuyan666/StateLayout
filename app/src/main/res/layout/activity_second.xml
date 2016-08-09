@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.objectlife.statelayoutsample.SecondActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="content"/>
+
+        <Button
+            android:id="@+id/btn_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="error"/>
+
+        <Button
+            android:id="@+id/btn_loading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="loading"/>
+
+        <Button
+            android:id="@+id/btn_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="empty"/>
+    </LinearLayout>
+
+    <com.objectlife.statelayout.StateLayout
+        android:id="@+id/sl_layout_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/v_content"
+        layout="@layout/view_content"/>
+
+    <include
+        android:id="@+id/v_empty"
+        layout="@layout/view_empty"/>
+
+    <include
+        android:id="@+id/v_error"
+        layout="@layout/view_error"/>
+
+    <include
+        android:id="@+id/v_loading"
+        layout="@layout/view_loading"/>
+
+    </com.objectlife.statelayout.StateLayout>
+
+</LinearLayout>
