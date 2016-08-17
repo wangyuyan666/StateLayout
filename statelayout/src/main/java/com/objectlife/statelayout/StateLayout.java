@@ -152,11 +152,11 @@ public class StateLayout extends RelativeLayout {
      *
      * @param state
      */
-    public void initState(@ViewState int state) {
+    public void initWithState(@ViewState int state) {
         if (state == defViewState){// default view state
             showLoadingView();
         } else {
-            showLoadingView();
+            setState(state);
         }
     }
 

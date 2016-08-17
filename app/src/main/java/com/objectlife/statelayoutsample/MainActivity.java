@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setContentView(contentView)
                 .setErrorView(errorView)
                 .setLoadingView(loadingView)
-                .initState(StateLayout.VIEW_LOADING);
+                .initWithState(StateLayout.VIEW_CONTENT);
 
         findViewById(R.id.btn_content).setOnClickListener(this);
         findViewById(R.id.btn_empty).setOnClickListener(this);

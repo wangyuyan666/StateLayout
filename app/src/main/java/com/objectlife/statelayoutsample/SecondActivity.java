@@ -22,7 +22,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 .setErrorViewResId(R.id.v_error)
                 .setEmptyViewResId(R.id.v_empty)
                 .setLoadingViewResId(R.id.v_loading)
-                .initState(StateLayout.VIEW_LOADING);
+                .initWithState(StateLayout.VIEW_LOADING);
 
         findViewById(R.id.btn_content).setOnClickListener(this);
         findViewById(R.id.btn_empty).setOnClickListener(this);
