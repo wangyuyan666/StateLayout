@@ -37,7 +37,7 @@ mInflater = LayoutInflater.from(this);
                 .setContentView(contentView)
                 .setErrorView(errorView)
                 .setLoadingView(loadingView)
-                .initState(StateLayout.VIEW_LOADING);
+                .initWithState(StateLayout.VIEW_LOADING);
 ```
 ####2.2. If ***`has child`*** in your statelayout , you can use it as follow
 ```
@@ -70,7 +70,7 @@ mStateLayout = (StateLayout) findViewById(R.id.sl_layout_state);
                 .setErrorViewResId(R.id.v_error)
                 .setEmptyViewResId(R.id.v_empty)
                 .setLoadingViewResId(R.id.v_loading)
-                .initState(StateLayout.VIEW_LOADING);
+                .initWithState(StateLayout.VIEW_LOADING);
 ```
 ####2.3.Switch view
 ```
