@@ -20,7 +20,7 @@ import android.content.Context;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 /**
  *
@@ -30,7 +30,7 @@ import android.widget.RelativeLayout;
  *
  * @author objectlife (wangyuyanmail[at]gmail[dot]com)
  */
-public class StateLayout extends RelativeLayout {
+public class StateLayout extends FrameLayout {
 
     @IntDef({VIEW_CONTENT, VIEW_EMPTY, VIEW_ERROR, VIEW_LOADING})
     public @interface ViewState {}
