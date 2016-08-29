@@ -22,9 +22,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  *
- * A subclass of RelativeLayout that can display different state of view.like contentView, emptyView,
+ * A subclass of FrameLayout that can display different state of view.like contentView, emptyView,
  * errorView and loadingView. you can set state view by {@link #setContentView(View)} or {@link #setLoadingViewResId(int)},
  * and you can switch state by call {@link #setState(int)}.
  *
@@ -33,6 +36,7 @@ import android.widget.FrameLayout;
 public class StateLayout extends FrameLayout {
 
     @IntDef({VIEW_CONTENT, VIEW_EMPTY, VIEW_ERROR, VIEW_LOADING})
+    @Retention(RetentionPolicy.SOURCE)
     public @interface ViewState {}
 
     public static final int VIEW_CONTENT = 0x00000000;

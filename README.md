@@ -12,7 +12,7 @@ A library for showing different state of views - Content,Empty,Loading,Error.
 
 ```
 dependencies {
-    compile 'com.objectlife.statelayout:statelayout:1.0.1'
+    compile 'com.objectlife.statelayout:statelayout:1.0.2'
 }
 ```
 
