@@ -189,6 +189,10 @@ public class StateLayout extends FrameLayout {
         }
     }
 
+    public int getState(){
+        return defViewState;
+    }
+
     private void initStateView(View stateView) {
         if (stateView != null) {
             addView(stateView);
