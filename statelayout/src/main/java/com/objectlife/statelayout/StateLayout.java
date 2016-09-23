@@ -189,6 +189,11 @@ public class StateLayout extends FrameLayout {
         }
     }
 
+    /**
+     * Return the current view
+     *
+     * @return One of {@link #VIEW_CONTENT},{@link #VIEW_EMPTY},{@link #VIEW_ERROR},{@link #VIEW_LOADING}
+     */
     public int getState(){
         return defViewState;
     }
