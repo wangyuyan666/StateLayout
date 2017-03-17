@@ -1,5 +1,4 @@
 # AndroidStateLayout
--
 A library for showing different state of views - Content,Empty,Loading,Error.
 <img src="https://github.com/objectlife/StateLayout/blob/master/screenshot/state_layout.gif" width="50%" height="50%" />
 
@@ -77,7 +76,6 @@ mStateLayout = (StateLayout) findViewById(R.id.sl_layout_state);
 mStateLayout.setState(StateLayout.VIEW_CONTENT);
 ```
 ### License
--
 ```
 Copyright (C) 2016 objectlife
 Licensed under the Apache License, Version 2.0 (the "License");
