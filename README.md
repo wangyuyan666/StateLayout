@@ -3,9 +3,9 @@
 A library for showing different state of views - Content,Empty,Loading,Error.
 <img src="https://github.com/objectlife/StateLayout/blob/master/screenshot/state_layout.gif" width="50%" height="50%" />
 
-##Usage
+## Usage
 
-###1.IMPORT
+### 1.IMPORT
 * Download and import the library module into your workspace.
 * OR
 * Add these lines to `build.gradle` of your project
@@ -16,8 +16,8 @@ dependencies {
 }
 ```
 
-###2.CODE
-####2.1. If ***`has no child`*** in your statelayout , you can use it as follow
+### 2.CODE
+#### 2.1. If ***`has no child`*** in your statelayout , you can use it as follow
 ```
 <com.objectlife.statelayout.StateLayout
         android:id="@+id/sl_layout_state"
@@ -39,7 +39,7 @@ mInflater = LayoutInflater.from(this);
                 .setLoadingView(loadingView)
                 .initWithState(StateLayout.VIEW_LOADING);
 ```
-####2.2. If ***`has child`*** in your statelayout , you can use it as follow
+#### 2.2. If ***`has child`*** in your statelayout , you can use it as follow
 ```
 <com.objectlife.statelayout.StateLayout
         android:id="@+id/sl_layout_state"
@@ -72,11 +72,11 @@ mStateLayout = (StateLayout) findViewById(R.id.sl_layout_state);
                 .setLoadingViewResId(R.id.v_loading)
                 .initWithState(StateLayout.VIEW_LOADING);
 ```
-####2.3.Switch view
+#### 2.3.Switch view
 ```
 mStateLayout.setState(StateLayout.VIEW_CONTENT);
 ```
-###License
+### License
 -
 ```
 Copyright (C) 2016 objectlife
