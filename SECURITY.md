@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes are provided for the latest published release. The current repository is preparing the 1.1.0 maintenance release; the historical 1.0.3 Bintray artifact is no longer distributed.
+Security fixes are provided for the latest published release, currently 1.1.0. The historical 1.0.3 Bintray artifact is no longer distributed.
 
 ## Reporting a vulnerability
 

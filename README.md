@@ -5,7 +5,7 @@
 
 StateLayout is a small Android View container that displays one of four mutually exclusive states: **content**, **empty**, **error**, or **loading**. It is intended for projects that use Android XML layouts and the classic View system.
 
-> **Maintenance status:** active modernization. Version `1.1.0` is being prepared and is not yet published to Maven Central. The historical `1.0.3` Bintray/JCenter artifact should not be used for new builds.
+> **Maintenance status:** maintained. Version `1.1.0` is available from [GitHub Releases](https://github.com/wangyuyan666/StateLayout/releases/tag/v1.1.0). Maven Central publication is still pending; the historical `1.0.3` Bintray/JCenter artifact should not be used for new builds.
 
 ![StateLayout sample](screenshot/state_layout.gif)
 
@@ -27,9 +27,17 @@ StateLayout is a small Android View container that displays one of four mutually
 
 ## Installation
 
-### Current development version
+### GitHub Release
 
-Until `1.1.0` is published, include this repository as source and depend on its library module:
+Download `statelayout-1.1.0.aar` from the [v1.1.0 release](https://github.com/wangyuyan666/StateLayout/releases/tag/v1.1.0), place it in your app's `libs` directory, and add:
+
+```groovy
+dependencies {
+    implementation files('libs/statelayout-1.1.0.aar')
+}
+```
+
+You can also include this repository as source and depend on its library module:
 
 ```groovy
 dependencies {
@@ -37,13 +45,7 @@ dependencies {
 }
 ```
 
-The planned Maven coordinate is:
-
-```groovy
-implementation 'io.github.wangyuyan666:statelayout:1.1.0'
-```
-
-Do not use that coordinate until this README links to a verified Maven Central release. See [the release procedure](docs/RELEASING.md) for the remaining publication work.
+The planned Maven Central coordinate is `io.github.wangyuyan666:statelayout:1.1.0`. Do not use that coordinate until this README links to a verified Maven Central artifact. See [the release procedure](docs/RELEASING.md) for the remaining Central Portal work.
 
 ## XML configuration
 
@@ -137,7 +139,7 @@ StateLayout deliberately remains a focused View-system primitive. Networking, pa
 
 ## 中文简介
 
-StateLayout 是面向 Android XML/View 项目的轻量状态容器，用于在内容、空数据、错误和加载四种界面之间切换。项目正在恢复维护；`1.1.0` 正在准备中，正式发布前请通过源码模块引用。构建、测试、贡献和发布要求见上方文档。
+StateLayout 是面向 Android XML/View 项目的轻量状态容器，用于在内容、空数据、错误和加载四种界面之间切换。`1.1.0` 已通过 GitHub Releases 发布；Maven Central 发布仍在准备中。构建、测试、贡献和发布要求见上方文档。
 
 ## License
 

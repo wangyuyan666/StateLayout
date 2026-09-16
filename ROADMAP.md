@@ -7,9 +7,10 @@
 - [x] Add XML state-view attributes and close issue #3 after maintainer review.
 - [x] Add state transition and recreation tests.
 - [x] Add CI and verifiable Maven publication metadata.
-- [ ] Complete community review of the compatibility changes.
+- [x] Complete community review of the compatibility changes.
 - [ ] Configure a Maven Central namespace and signing credentials.
-- [ ] Publish the release and validate it from a clean consumer project.
+- [x] Publish the GitHub Release and validate the AAR from a clean consumer project.
+- [ ] Publish the same coordinate through Maven Central and validate it without `mavenLocal()`.
 
 ## Later candidates
 
