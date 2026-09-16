@@ -31,7 +31,7 @@ jobs:
           java-version: '17'
 
       - name: Install Android SDK Platform 36
-        run: sdkmanager "platforms;android-36"
+        run: "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
