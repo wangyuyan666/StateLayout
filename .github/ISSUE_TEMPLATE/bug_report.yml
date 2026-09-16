@@ -1,0 +1,36 @@
+name: Bug report
+description: Report reproducible incorrect behavior
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include layout/code and exact steps, or link to a small project.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: StateLayout version
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Android/Gradle/JDK environment
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      render: shell

@@ -1,91 +1,146 @@
-# AndroidStateLayout
-A library for showing different state of views - Content,Empty,Loading,Error.
-<img src="https://github.com/objectlife/StateLayout/blob/master/screenshot/state_layout.gif" width="50%" height="50%" />
+# StateLayout
 
-## Usage
+[![Android CI](https://github.com/wangyuyan666/StateLayout/actions/workflows/android.yml/badge.svg)](https://github.com/wangyuyan666/StateLayout/actions/workflows/android.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
-### 1.IMPORT
-* Download and import the library module into your workspace.
-* OR
-* Add these lines to `build.gradle` of your project
+StateLayout is a small Android View container that displays one of four mutually exclusive states: **content**, **empty**, **error**, or **loading**. It is intended for projects that use Android XML layouts and the classic View system.
 
-```
+> **Maintenance status:** active modernization. Version `1.1.0` is being prepared and is not yet published to Maven Central. The historical `1.0.3` Bintray/JCenter artifact should not be used for new builds.
+
+![StateLayout sample](screenshot/state_layout.gif)
+
+## Why StateLayout?
+
+- One predictable container for four common UI states.
+- Configure views in XML or supply them programmatically.
+- Preserve the selected state across Android view recreation.
+- Java API that is straightforward to call from both Java and Kotlin.
+- No runtime dependency on AppCompat or a networking/state-management framework.
+
+## Requirements
+
+| Component | Requirement |
+|---|---|
+| Library runtime | Android API 8+ |
+| Build from source | JDK 17 and Android SDK Platform 36 |
+| Sample target | Android API 36 |
+
+## Installation
+
+### Current development version
+
+Until `1.1.0` is published, include this repository as source and depend on its library module:
+
+```groovy
 dependencies {
-    compile 'com.objectlife.statelayout:statelayout:1.0.3'
+    implementation project(':statelayout')
 }
 ```
 
-### 2.CODE
-#### 2.1. If ***`has no child`*** in your statelayout , you can use it as follow
+The planned Maven coordinate is:
+
+```groovy
+implementation 'io.github.wangyuyan666:statelayout:1.1.0'
 ```
+
+Do not use that coordinate until this README links to a verified Maven Central release. See [the release procedure](docs/RELEASING.md) for the remaining publication work.
+
+## XML configuration
+
+Assign the state views and initial state directly from XML:
+
+```xml
 <com.objectlife.statelayout.StateLayout
-        android:id="@+id/sl_layout_state"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-```
-```
-mInflater = LayoutInflater.from(this);
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/state_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:sl_contentView="@id/content"
+    app:sl_emptyView="@id/empty"
+    app:sl_errorView="@id/error"
+    app:sl_loadingView="@id/loading"
+    app:sl_initialState="loading">
 
-        mStateLayout = (StateLayout) findViewById(R.id.sl_layout_state);
-        View contentView = mInflater.inflate(R.layout.view_content,mStateLayout,false);
-        View emptyView = mInflater.inflate(R.layout.view_empty,mStateLayout,false);
-        View errorView = mInflater.inflate(R.layout.view_error,mStateLayout,false);
-        View loadingView = mInflater.inflate(R.layout.view_loading,mStateLayout,false);
+    <include android:id="@+id/content" layout="@layout/view_content" />
+    <include android:id="@+id/empty" layout="@layout/view_empty" />
+    <include android:id="@+id/error" layout="@layout/view_error" />
+    <include android:id="@+id/loading" layout="@layout/view_loading" />
+</com.objectlife.statelayout.StateLayout>
+```
 
-        mStateLayout.setEmptyView(emptyView)
-                .setContentView(contentView)
-                .setErrorView(errorView)
-                .setLoadingView(loadingView)
-                .initWithState(StateLayout.VIEW_LOADING);
-```
-#### 2.2. If ***`has child`*** in your statelayout , you can use it as follow
-```
-<com.objectlife.statelayout.StateLayout
-        android:id="@+id/sl_layout_state"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+Switch state from Kotlin:
 
-    <include
-        android:id="@+id/v_content"
-        layout="@layout/view_content"/>
+```kotlin
+val stateLayout = findViewById<StateLayout>(R.id.state_layout)
+stateLayout.setState(StateLayout.VIEW_CONTENT)
+```
 
-    <include
-        android:id="@+id/v_empty"
-        layout="@layout/view_empty"/>
+Or Java:
 
-    <include
-        android:id="@+id/v_error"
-        layout="@layout/view_error"/>
+```java
+StateLayout stateLayout = findViewById(R.id.state_layout);
+stateLayout.setState(StateLayout.VIEW_ERROR);
+```
 
-    <include
-        android:id="@+id/v_loading"
-        layout="@layout/view_loading"/>
+## Programmatic configuration
 
-    </com.objectlife.statelayout.StateLayout>
-```
-```
-mStateLayout = (StateLayout) findViewById(R.id.sl_layout_state);
-        mStateLayout.setContentViewResId(R.id.v_content)
-                .setErrorViewResId(R.id.v_error)
-                .setEmptyViewResId(R.id.v_empty)
-                .setLoadingViewResId(R.id.v_loading)
-                .initWithState(StateLayout.VIEW_LOADING);
-```
-#### 2.3.Switch view
-```
-mStateLayout.setState(StateLayout.VIEW_CONTENT);
-```
-### License
-```
-Copyright (C) 2016 objectlife
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+Views with no parent are added to the container automatically:
 
-    http://www.apache.org/licenses/LICENSE-2.0
+```kotlin
+val stateLayout = findViewById<StateLayout>(R.id.state_layout)
+val inflater = LayoutInflater.from(this)
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and limitations under the License.
+stateLayout
+    .setContentView(inflater.inflate(R.layout.view_content, stateLayout, false))
+    .setEmptyView(inflater.inflate(R.layout.view_empty, stateLayout, false))
+    .setErrorView(inflater.inflate(R.layout.view_error, stateLayout, false))
+    .setLoadingView(inflater.inflate(R.layout.view_loading, stateLayout, false))
+    .initWithState(StateLayout.VIEW_LOADING)
 ```
+
+For existing descendants, the original ID-based API remains available:
+
+```java
+stateLayout.setContentViewResId(R.id.content)
+        .setEmptyViewResId(R.id.empty)
+        .setErrorViewResId(R.id.error)
+        .setLoadingViewResId(R.id.loading)
+        .initWithState(StateLayout.VIEW_LOADING);
+```
+
+An invalid state or a missing ID passed through the programmatic API fails immediately with an `IllegalArgumentException`. Missing XML references fail during inflation with an `IllegalStateException`. State references declared in XML are resolved after child inflation.
+
+## Build and verify
+
+```bash
+./gradlew testDebugUnitTest lintDebug assembleDebug assembleRelease
+```
+
+To verify the library's AAR, sources, documentation, and POM locally:
+
+```bash
+./gradlew publishReleasePublicationToMavenLocal
+```
+
+## Project scope
+
+StateLayout deliberately remains a focused View-system primitive. Networking, pagination, retry policy, and application state ownership belong in higher-level application code. Compose applications generally do not need a wrapper around conditional composition; a future Compose sample may demonstrate interoperability without replacing this library's View API.
+
+## Contributing and support
+
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a public API change.
+- Use the issue templates for reproducible bugs and focused feature requests.
+- See [ROADMAP.md](ROADMAP.md) for planned work.
+- See [SECURITY.md](SECURITY.md) for private vulnerability reporting.
+- All participants must follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+## 中文简介
+
+StateLayout 是面向 Android XML/View 项目的轻量状态容器，用于在内容、空数据、错误和加载四种界面之间切换。项目正在恢复维护；`1.1.0` 正在准备中，正式发布前请通过源码模块引用。构建、测试、贡献和发布要求见上方文档。
+
+## License
+
+Copyright 2016 objectlife and StateLayout contributors.
+
+Licensed under the [Apache License 2.0](LICENSE).
