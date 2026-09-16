@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StateLayout">
+        <attr name="sl_contentView" format="reference" />
+        <attr name="sl_emptyView" format="reference" />
+        <attr name="sl_errorView" format="reference" />
+        <attr name="sl_loadingView" format="reference" />
+        <attr name="sl_initialState" format="enum">
+            <enum name="content" value="0" />
+            <enum name="empty" value="1" />
+            <enum name="error" value="2" />
+            <enum name="loading" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

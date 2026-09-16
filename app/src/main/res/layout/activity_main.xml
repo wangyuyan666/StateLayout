@@ -11,35 +11,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:dividerPadding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarStyle">
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/btn_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="content"/>
+            android:text="@string/state_content"/>
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/btn_error"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="error"/>
+            android:text="@string/state_error"/>
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/btn_loading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="loading"/>
+            android:text="@string/state_loading"/>
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/btn_empty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="empty"/>
+            android:text="@string/state_empty"/>
     </LinearLayout>
 
     <com.objectlife.statelayout.StateLayout

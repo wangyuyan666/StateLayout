@@ -1,100 +1,85 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
-version = "1.0.3"
+group = 'io.github.wangyuyan666'
+version = '1.1.0-SNAPSHOT'
+
 android {
-    resourcePrefix "sl"
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    namespace = 'com.objectlife.statelayout'
+    compileSdk = 36
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdk = 8
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compileOnly 'androidx.annotation:annotation:1.10.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.17'
 }
 
-def siteUrl = 'https://github.com/objectlife/StateLayout'
-def gitUrl = 'https://github.com/objectlife/StateLayout.git'
-group = "com.objectlife.statelayout"
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                // Add your description here
-                description 'A library for showing different state of views - Content,Empty,Loading,Error.'
-                name 'StateLayout'
-                url siteUrl
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifactId = 'statelayout'
+
+                pom {
+                    name = 'StateLayout'
+                    description = 'A lightweight Android View container for content, empty, loading, and error states.'
+                    url = 'https://github.com/wangyuyan666/StateLayout'
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
                     }
-                }
-                developers {
-                    developer {
-                        id 'objectlife'
-                        name 'objectlife'
-                        email 'wangyuyanmail@gmail.com'
+
+                    developers {
+                        developer {
+                            id = 'wangyuyan666'
+                            name = 'wangyuyan'
+                        }
                     }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
+
+                    scm {
+                        connection = 'scm:git:git://github.com/wangyuyan666/StateLayout.git'
+                        developerConnection = 'scm:git:ssh://github.com/wangyuyan666/StateLayout.git'
+                        url = 'https://github.com/wangyuyan666/StateLayout'
+                    }
                 }
             }
         }
-    }
-}
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    options.encoding = 'UTF-8'
-//    source = 'src/main/java'
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-Properties properties = new Properties()
-// 加载本地配置
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "StateLayout"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
     }
 }
