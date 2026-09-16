@@ -4,6 +4,8 @@ Notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-09-16
+
 ### Added
 
 - XML attributes for assigning content, empty, error, and loading views and an initial state.
@@ -28,5 +30,6 @@ Notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 - Historical Bintray/JCenter release. Its original artifact is no longer available from Maven Central.
 
-[Unreleased]: https://github.com/wangyuyan666/StateLayout/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/wangyuyan666/StateLayout/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/wangyuyan666/StateLayout/compare/6acfafe...v1.1.0
 [1.0.3]: https://github.com/wangyuyan666/StateLayout/tree/6acfafe
