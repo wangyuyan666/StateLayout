@@ -185,18 +185,19 @@ public class StateLayout extends FrameLayout {
         if (previous == replacement) {
             return replacement;
         }
+        ViewParent replacementParent = replacement == null ? null : replacement.getParent();
+        if (replacementParent != null && replacementParent != this) {
+            throw new IllegalArgumentException("State view already belongs to another parent");
+        }
         if (previous != null && programmaticallyAddedViews.remove(previous)) {
             removeView(previous);
         }
         if (replacement == null) {
             return null;
         }
-        ViewParent parent = replacement.getParent();
-        if (parent == null) {
+        if (replacementParent == null) {
             addView(replacement);
             programmaticallyAddedViews.put(replacement, Boolean.TRUE);
-        } else if (parent != this) {
-            throw new IllegalArgumentException("State view already belongs to another parent");
         }
         return replacement;
     }

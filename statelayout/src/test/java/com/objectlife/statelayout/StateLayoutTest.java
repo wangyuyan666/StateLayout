@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -118,6 +119,21 @@ public class StateLayoutTest {
 
         assertEquals(-1, layout.indexOfChild(content));
         assertSame(replacement, layout.getChildAt(layout.indexOfChild(replacement)));
+    }
+
+    @Test
+    public void rejectedReplacementLeavesCurrentViewAttached() {
+        View replacement = new View(context);
+        new FrameLayout(context).addView(replacement);
+
+        try {
+            layout.setContentView(replacement);
+        } catch (IllegalArgumentException expected) {
+            assertSame(layout, content.getParent());
+            return;
+        }
+
+        throw new AssertionError("Expected an IllegalArgumentException");
     }
 
     @Test
